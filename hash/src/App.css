@@ -1,8 +1,8 @@
-:root{
+:root {
   --hash-color: white;
 }
 
-.hash{
+.hash {
   display: grid;
   height: 450px;
   width: 300px;
@@ -13,7 +13,8 @@
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.header, button{
+.header,
+button {
   grid-column-start: 1;
   grid-column-end: 4;
 }

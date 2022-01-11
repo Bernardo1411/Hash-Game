@@ -1,16 +1,16 @@
 @font-face {
-  font-family: 'Pangolin-Regular';
-  src: url('./fonts/Pangolin-Regular.ttf');
+  font-family: "Pangolin-Regular";
+  src: url("./fonts/Pangolin-Regular.ttf");
 }
 
-body{
+body {
   display: flex;
   background-color: #708ebbd5;
   justify-content: center;
   align-items: center;
 }
 
-h1{
+h1 {
   font-family: Pangolin-Regular;
   color: antiquewhite;
   margin-top: 30px;

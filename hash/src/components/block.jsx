@@ -1,16 +1,20 @@
-import React from 'react'
-import './block.css'
+import React from "react";
+import "./block.css";
 
-const Block = props =>{
-    const ListBlocks = props.name.map(block=>{
-        return(
-            <div className="block" key={block.id} onClick={ e => props.click(block.id)}>
-                {block.value}
-            </div>
-        )
-    })
+const Block = (props) => {
+  const ListBlocks = props.name.map((block) => {
+    return (
+      <div
+        className="block"
+        key={block.id}
+        onClick={(e) => props.click(block.id)}
+      >
+        {block.value}
+      </div>
+    );
+  });
 
-    return ListBlocks
-}
+  return ListBlocks;
+};
 
-export default Block
+export default Block;
