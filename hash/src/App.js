@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import "./App.css";
+
 import Block from "./components/block";
 import Header from "./components/header";
 import Button from "./components/button";
+import { change } from "./helpers/functionHelpers";
+
+import "./App.css";
 
 let initialSate = {
   blocks: [
@@ -18,18 +21,6 @@ let initialSate = {
   ],
   status: true,
   end: false,
-};
-
-const change = (val, status) => {
-  let value = val;
-  let stato = status;
-
-  if (value === "-") {
-    value = status ? "X" : "O";
-    stato = status ? false : true;
-  }
-
-  return { value, stato };
 };
 
 export default class Hash extends Component {
@@ -128,7 +119,7 @@ export default class Hash extends Component {
   }
 
   restart() {
-    initialSate = {
+    const initialSate = {
       blocks: [
         { value: "-", id: 0 },
         { value: "-", id: 1 },
