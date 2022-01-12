@@ -3,7 +3,14 @@ import React, { Component } from "react";
 import Block from "./components/block";
 import Header from "./components/header";
 import Button from "./components/button";
-import { stateNewContent, initializingState } from "./helpers/functionHelpers";
+import {
+  stateNewContent,
+  initializingState,
+  isLineCompleted,
+  isColumnCompleted,
+  isMainDiagonalCompleted,
+  isSecondaryDiagonalCompleted,
+} from "./helpers/functionHelpers";
 
 import "./App.css";
 
@@ -40,62 +47,17 @@ export default class Hash extends Component {
 
     let sum = 0;
 
-    for (let i = 0; i < 7; i += 3) {
-      sum = 0;
-      for (let j = i + 1; j < i + 3; j++) {
-        if (
-          actualStatetArray[i] === actualStatetArray[j] &&
-          actualStatetArray[i] !== "-"
-        ) {
-          ++sum;
-          if (sum === 2) {
-            this.setState({ end: true });
-            return;
-          }
-        }
-      }
-    }
-    for (let i = 0; i < 3; i++) {
-      sum = 0;
-      for (let j = 3 + i; j < i + 7; j += 3) {
-        if (
-          actualStatetArray[i] === actualStatetArray[j] &&
-          actualStatetArray[i] !== "-"
-        ) {
-          ++sum;
-          if (sum === 2) {
-            this.setState({ end: true });
-            return;
-          }
-        }
-      }
-    }
-    sum = 0;
-    for (let j = 4; j < 9; j += 4) {
-      if (
-        actualStatetArray[0] === actualStatetArray[j] &&
-        actualStatetArray[0] !== "-"
-      ) {
-        ++sum;
-        if (sum === 2) {
-          this.setState({ end: true });
-          return;
-        }
-      }
-    }
-    sum = 0;
-    for (let j = 4; j < 7; j += 2) {
-      if (
-        actualStatetArray[2] === actualStatetArray[j] &&
-        actualStatetArray[2] !== "-"
-      ) {
-        ++sum;
-        if (sum === 2) {
-          this.setState({ end: true });
-          return;
-        }
-      }
-    }
+    sum = isLineCompleted(actualStatetArray);
+    if (sum === 2) return this.setState({ end: true });
+
+    sum = isColumnCompleted(actualStatetArray);
+    if (sum === 2) return this.setState({ end: true });
+
+    sum = isMainDiagonalCompleted(actualStatetArray);
+    if (sum === 2) return this.setState({ end: true });
+
+    sum = isSecondaryDiagonalCompleted(actualStatetArray);
+    if (sum === 2) return this.setState({ end: true });
   }
 
   restart() {
