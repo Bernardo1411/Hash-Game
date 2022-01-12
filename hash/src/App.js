@@ -3,25 +3,9 @@ import React, { Component } from "react";
 import Block from "./components/block";
 import Header from "./components/header";
 import Button from "./components/button";
-import { change } from "./helpers/functionHelpers";
+import { stateNewContent, initializingState } from "./helpers/functionHelpers";
 
 import "./App.css";
-
-let initialSate = {
-  blocks: [
-    { value: "-", id: 0 },
-    { value: "-", id: 1 },
-    { value: "-", id: 2 },
-    { value: "-", id: 3 },
-    { value: "-", id: 4 },
-    { value: "-", id: 5 },
-    { value: "-", id: 6 },
-    { value: "-", id: 7 },
-    { value: "-", id: 8 },
-  ],
-  status: true,
-  end: false,
-};
 
 export default class Hash extends Component {
   constructor(props) {
@@ -30,24 +14,20 @@ export default class Hash extends Component {
     this.restart = this.restart.bind(this);
   }
 
-  state = { ...initialSate };
+  state = {
+    ...initializingState(),
+  };
 
   changeState(id) {
     if (!this.state.end) {
-      const Listblocks = [...this.state.blocks];
-      let val = null;
-      for (let i = 0; i < 9; i++) {
-        if (id === i) {
-          val = change(this.state.blocks[i].value, this.state.status);
-          Listblocks[i].value = val.value;
-          this.setState(
-            {
-              blocks: Listblocks,
-            },
-            this.endGame(this.state.blocks)
-          );
-        }
-      }
+      const { listBlocks, val } = stateNewContent(this.state, id);
+
+      this.setState(
+        {
+          blocks: listBlocks,
+        },
+        this.endGame(this.state.blocks)
+      );
 
       this.setState({ status: val.stato });
     }
@@ -119,22 +99,9 @@ export default class Hash extends Component {
   }
 
   restart() {
-    const initialSate = {
-      blocks: [
-        { value: "-", id: 0 },
-        { value: "-", id: 1 },
-        { value: "-", id: 2 },
-        { value: "-", id: 3 },
-        { value: "-", id: 4 },
-        { value: "-", id: 5 },
-        { value: "-", id: 6 },
-        { value: "-", id: 7 },
-        { value: "-", id: 8 },
-      ],
-      status: true,
-      end: false,
-    };
-    this.setState({ ...initialSate });
+    this.setState({
+      ...initializingState(),
+    });
   }
 
   render() {
