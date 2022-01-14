@@ -7,7 +7,9 @@ const Block = (props) => {
       <div
         className="block"
         key={block.id}
-        onClick={(e) => props.click(block.id)}
+        onClick={(e) => {
+          return block.value === "-" && props.click(block.id);
+        }}
       >
         {block.value}
       </div>
