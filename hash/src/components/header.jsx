@@ -6,7 +6,7 @@ export default (props) => (
     {props.end ? (
       <h1>{props.name ? "O" : "X"} venceu!</h1>
     ) : (
-      <h1> Jogador: {props.name ? "X" : "O"}</h1>
+      <h1> Player: {props.name ? "X" : "O"}</h1>
     )}
   </div>
 );
